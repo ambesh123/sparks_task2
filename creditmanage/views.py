@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from .models import client
 
-# Create your views here.
+def home(request):
+	return render(request , 'index.html')
+
+def users(request):
+	clients = client.objects.all()
+	return render(request , 'users.html' , {'clients' : clients})

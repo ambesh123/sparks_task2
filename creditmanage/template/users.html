@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>USERS</title>
+	{%load static%}
+  	<link rel = "stylesheet" href="{%static '/css/userlist.css'%}">
+  	<script type="text/javascript">
+  		function giveContact(){
+  			alert("Mail me at : ambesht0@gmail.com");
+  		}
+  	</script>
+</head>
+<body>
+
+<section>
+  <h1>Credit Management</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Account Balance</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+      	{% for c in clients %}
+        <tr>
+		 <td>{{c.uid}}</td>
+		 <td>{{c.name}}</td>
+		 <td>{{c.balance}}</td>
+		 <td>OK</td>
+		</tr>
+		{% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<div class="credits">
+  Created By - <a onclick="giveContact()"><i>Ambesh Tiwari</i></a>
+</div>
+
+</body>
+</html>
