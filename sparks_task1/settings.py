@@ -55,7 +55,9 @@ ROOT_URLCONF = 'sparks_task1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['creditmanage/template',],
+        'DIRS': ['creditmanage/template',
+                'ambesh.pythonanywhere.com/creditmanage/template',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
