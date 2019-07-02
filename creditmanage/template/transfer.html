@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Transfer Money</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		function finalize(){
+			alert("Transaction Successful");
+			window.location.href = "/finalize/";
+		}
+
+		$(document).ready(
+				function(){
+					$.get('../choose_sender/' , {} , function(data , status){
+						$('.dynamic-panel').html(data)
+					});
+
+					$(".dynamic-panel").on('click','p',function(event){
+						var purpose = event.target.getAttribute('purpose');
+
+						if(purpose == 'sender'){
+							var uid = event.target.getAttribute('uid');
+							var name = event.target.innerHTML
+							$("#showsender").html(name);
+							$.get('../choose_receiver/' , {'sender' : uid} , function(data,status){
+								$(".dynamic-panel").html(data);
+							});
+						}
+						else if(purpose == 'receiver'){
+							var uid = event.target.getAttribute('uid');
+							var name = event.target.innerHTML
+							$("#showreceiver").html(name);
+							$.get('../enter_amount/' , {'receiver' : uid} , function(data,status){
+								$(".dynamic-panel").html(data);
+							});
+						}
+						else if(purpose == 'transfer_amount'){
+							var amount = document.getElementById('amount').value;
+							$("#showamount").html(amount);
+							var validInput = amount.length > 0;
+
+							for(var x = 0; x < amount.length; x++){
+								if(amount.charAt(x) > '9' || '0' > amount.charAt(x)){validInput = false; break;}
+							}
+							if(validInput){
+								$.get('../set_amount/' , {'amount' : amount} , function(data,status){
+									$(".dynamic-panel").html(data);
+								});
+							}
+							else{
+								alert("Invalid Amount , Please enter only integers");
+							}
+						}
+						else alert("Some error occured , Contact website owner");
+					});
+				}
+			);
+	</script>
+
+</head>
+<body>
+	<div class="container-fluid" style = "padding: 50px">
+		<div class="row text-center">
+		  <div class="col-sm-4">
+		  	<div class="panel panel-primary">
+		      <div class="panel-heading"><strong>SENDER</strong></div>
+		      <div class="panel-body" id = "showsender">Choose from List</div>
+		    </div>
+		  </div>
+		  <div class="col-sm-4">
+		  	<div class="panel panel-success">
+		      <div class="panel-heading"><strong>RECEIVER</strong></div>
+		      <div class="panel-body" id = "showreceiver">Choose from List</div>
+		    </div>
+		  </div>
+		  <div class="col-sm-4">
+		  	<div class="panel panel-info">
+			  <div class="panel-heading"><strong>AMOUNT</strong></div>
+			  <div class="panel-body" id = "showamount">Please Enter</div>
+			</div>
+		  </div>
+		</div>
+	</div>
+	<div class="container-fluid dynamic-panel">
+		Div
+	</div>
+</body>
+</html>

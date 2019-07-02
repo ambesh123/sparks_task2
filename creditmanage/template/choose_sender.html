@@ -1,0 +1,25 @@
+<html>
+<head>
+  <title>Select Sender</title>
+  {%load static%}
+  <link rel="stylesheet" type="text/css" href="{%static '/css/chooseuser.css'%}">
+</head>
+<body>
+<table>
+  <thead>
+    <tr>
+      <th> User ID </th>
+      <th>Choose a user to send money</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for c in clients%}
+    <tr>
+      <td>{{c.uid}}</td>
+      <td><strong><p uid = '{{c.uid}}' purpose = "sender">{{c.name}}</p></strong></td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+</body>
+</html>

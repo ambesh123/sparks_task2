@@ -38,3 +38,7 @@
     filter: progid:DXImageTransform.Microsoft.Glow(Color=#000000, Strength=1);
     text-shadow: 0.03em 0.03em 0 #6D6D6D;
 }
+
+.btn{
+  margin-bottom: 20px;
+}
